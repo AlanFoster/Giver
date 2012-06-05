@@ -16,14 +16,26 @@ public final class Helpers {
 	}
 	
 	public static <T> String join(T[] arr, String deliminator){
+		if(arr == null || arr.length == 0){
+			return "";
+		}
 		StringBuilder sb = new StringBuilder();
-
 		for(T val : arr){
 			sb.append(val).append(", ");
 		}
-		
 		sb.replace(sb.length() - deliminator.length(), sb.length(), "");
 		
 		return sb.toString();
+	}
+	
+	public static String concat(Object ... args){
+		StringBuffer obj = new StringBuffer();
+		for(Object o : args)
+			obj.append(o);
+		return obj.toString();
+	}
+	
+	public static String addLeadingZero(long num) {
+		return String.format("%02d", num);
 	}
 }

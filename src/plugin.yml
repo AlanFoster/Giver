@@ -1,9 +1,19 @@
 name: Giver 
 version: 1.0
-main: main.Giver
-authors: [Alan Foster]
+author: Alan Foster
+website: https://github.com/AlanFoster/Giver
+
+main: me.alanfoster.giver.Giver
 
 commands:
-    giver:
-        usage: /giver <entityName> - Type "/giver help" for further details
-        description: Creates an item for you
+  giver:
+    usage: /giver <entityName> - Type "/giver help" for further details
+    description: Creates an item for you
+       
+permissions:
+  giver.normal:
+    description: Normal user operations
+    default: true
+  giver.super:
+    description: Super user operations!
+    default: false

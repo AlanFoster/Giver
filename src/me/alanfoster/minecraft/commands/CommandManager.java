@@ -1,9 +1,9 @@
-package me.alanfoster.commands;
+package me.alanfoster.minecraft.commands;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import me.alanfoster.commands.giver.commonCommands.SpawnCommand;
+import me.alanfoster.giver.commonCommands.SpawnCommand;
 import me.alanfoster.giver.configs.GiverConfig;
 import me.alanfoster.giver.configs.SpawnRecords;
 
@@ -15,24 +15,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CommandManager implements CommandExecutor {
 	private JavaPlugin plugin;
-	private GiverConfig config;
-	
 	private List<ICommandEventListener> listeners;
 
 	public CommandManager(JavaPlugin plugin) {
 		this.plugin = plugin;
-		
-		config = new GiverConfig(plugin);
-		
-		// TODO Wrong
-		SpawnRecords.setInstance(new SpawnRecords(plugin));
-		
 		listeners = new LinkedList<ICommandEventListener>();
-		registerCommonListeners();
-	}
-
-	private void registerCommonListeners() {
-		registerListener(new SpawnCommand(config));
 	}
 
 	public boolean registerListener(CommandListener newListener) {

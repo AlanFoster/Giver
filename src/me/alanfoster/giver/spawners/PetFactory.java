@@ -1,5 +1,8 @@
 package me.alanfoster.giver.spawners;
 
+import java.util.Map;
+
+import me.alanfoster.giver.Permission;
 import me.alanfoster.utils.Helpers;
 
 import org.bukkit.Location;
@@ -18,7 +21,7 @@ public class PetFactory extends EntityFactory {
 	private final static EntityType[] pets = { EntityType.OCELOT, EntityType.WOLF };
 
 	@Override
-	public Spawner createType(String entityName, int spawnLimit) {
+	public Spawner createType(String entityName, Map<Permission, Integer> spawnLimit) {
 		EntityType entityType = getEntityTypeFromName(entityName);
 
 		if (entityType != null && Helpers.Contains(pets, entityType)) {
@@ -31,7 +34,7 @@ public class PetFactory extends EntityFactory {
 	protected static class PetSpawner extends Spawner {
 		EntityType entityType;
 		
-		public PetSpawner(EntityType entityType, int spawnLimit) {
+		public PetSpawner(EntityType entityType, Map<Permission, Integer> spawnLimit) {
 			super(entityType.toString(), spawnLimit);
 			this.entityType = entityType;
 		}

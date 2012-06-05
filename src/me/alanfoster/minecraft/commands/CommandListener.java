@@ -1,11 +1,10 @@
-package me.alanfoster.commands;
+package me.alanfoster.minecraft.commands;
 
 
 import me.alanfoster.utils.Helpers;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-
 
 public abstract class CommandListener implements ICommandEventListener {
 	protected final String[] handlingLabels;

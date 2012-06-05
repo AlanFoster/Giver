@@ -1,4 +1,4 @@
-package me.alanfoster.commands.giver.commonCommands;
+package me.alanfoster.giver.commonCommands;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import me.alanfoster.commands.CommandListener;
+import me.alanfoster.giver.Permission;
 import me.alanfoster.giver.configs.GiverConfig;
 import me.alanfoster.giver.configs.SpawnRecords;
 import me.alanfoster.giver.configs.SpawnRequest;
@@ -18,6 +18,7 @@ import me.alanfoster.giver.spawners.MaterialFactory;
 import me.alanfoster.giver.spawners.PetFactory;
 import me.alanfoster.giver.spawners.Spawner;
 import me.alanfoster.giver.spawners.SpawnerFactory;
+import me.alanfoster.minecraft.commands.CommandListener;
 import me.alanfoster.utils.Helpers;
 
 import org.bukkit.Location;
@@ -26,10 +27,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-
-
-
 
 public class SpawnCommand extends CommandListener {
 	/**
@@ -42,14 +39,14 @@ public class SpawnCommand extends CommandListener {
 	private String validTypesHelpString;
 	private boolean ignoreSpawnLimitsIfAdmin;
 	
-	
 	public SpawnCommand(GiverConfig config) {
 		super("Spawner", "Spawns stuff. There is a limit per hour for each available type.", new String[] { "spawn", "s", "giver" }, 1, 1);
-		
-		ignoreSpawnLimitsIfAdmin = config.getIgnoreSpawnLimitsIfAdmin();
-		createAllSpawners(config.getSpawnRequests());
-		createSpawnFactories();
 	
+		createSpawnFactories();
+		createAllSpawners(config.getSpawnRequests());
+		ignoreSpawnLimitsIfAdmin = config.getIgnoreSpawnLimitsIfAdmin();
+	
+		refreshValidTypes();
 		//onCommandEvent(plugin.getServer().getWorld("world").getPlayers().get(0), "giver", new String[] { "cat" });
 	}
 
@@ -77,7 +74,7 @@ public class SpawnCommand extends CommandListener {
 			Spawner spawner = spawnFactory.createType(spawnRequest.getMinecraftName(), spawnRequest.getSpawnLimitPerHour());
 
 			if (spawner != null) {
-				spawners.put(spawnRequest.getMinecraftName(), spawner);
+				spawners.put(spawnRequest.getCommandTriggerName(), spawner);
 				return true;
 			}
 		}
@@ -90,13 +87,11 @@ public class SpawnCommand extends CommandListener {
 		validTypesHelpString = Helpers.join(keys.toArray());
 	}
 
-	
 	@Override
 	public boolean isValidArgs(Player player, String commandLabel, String[] args){
 		if(!super.isValidArgs(player, commandLabel, args)){
 			return false;
 		}
-		
 		
 		String spawnCommandName = args[0].toLowerCase();
 		if(!spawners.containsKey(spawnCommandName)){
@@ -104,13 +99,14 @@ public class SpawnCommand extends CommandListener {
 			return false;
 		}
 		
-
 		SpawnRecords spawnRecords = SpawnRecords.getInstance();
 		Spawner spawner = spawners.get(spawnCommandName);
 		
+		
+		Permission playerPermission = Permission.getBestPermission(player);
 		int waitingTimeMinutes = spawnRecords.getTimeRemaining(player, spawner);
 		if(waitingTimeMinutes > 0 && !(ignoreSpawnLimitsIfAdmin && player.isOp())) {
-			player.sendMessage("Cannot create " + spawnCommandName + ". The limit is " + spawner.getSpawnLimit() + " per hour. Please wait " + waitingTimeMinutes + " minutes.");
+			player.sendMessage("Cannot create " + spawnCommandName + ". The limit for a " + playerPermission + " user is " + spawner.getSpawnLimit(playerPermission) + " per hour. Please wait " + waitingTimeMinutes + " minutes.");
 			return false;
 		}
 		
@@ -143,14 +139,21 @@ public class SpawnCommand extends CommandListener {
 		return spawnLocation;
 	}
 
-
 	@Override
 	public String getDescription() {
-		return super.getDescription() + "\n" + validTypesHelpString;
+		return super.getDescription() + "\n" + getValidTypesHelpString();
 	}
 
 	@Override
 	public String getUsage() {
-		return "Usage: /" + GiverConfig.name + " <" + validTypesHelpString + ">";
+		return "Usage: /" + GiverConfig.name + " <" + getValidTypesHelpString() + ">";
+	}
+	
+	private String getValidTypesHelpString(){
+		if(validTypesHelpString == null){
+			refreshValidTypes();
+		}
+		
+		return validTypesHelpString;
 	}
 }

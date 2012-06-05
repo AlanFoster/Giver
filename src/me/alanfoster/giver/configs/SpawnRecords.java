@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.xml.crypto.dsig.keyinfo.PGPData;
 
+import me.alanfoster.giver.Permission;
 import me.alanfoster.giver.spawners.Spawner;
 import me.alanfoster.giver.spawners.SpawnerFactory;
 
@@ -79,6 +80,8 @@ public class SpawnRecords {
 			List<Long> previousSpawnTimes = spawnRecords.getLongList(playerName + "." + spawner.getLoggerName());
 			
 			if(previousSpawnTimes != null){
+				Permission playerPermission = Permission.getBestPermission(player);
+				
 				long previousHourMilliseconds = System.currentTimeMillis() - 3600000;
 				
 				int pastHourSpawnCount = 0;
@@ -90,7 +93,7 @@ public class SpawnRecords {
 					if(latestSpawnTimeMilliseconds > previousHourMilliseconds){
 						pastHourSpawnCount++;
 							
-						if(pastHourSpawnCount == spawner.getSpawnLimit()){
+						if(pastHourSpawnCount == spawner.getSpawnLimit(playerPermission)){
 							return new Date(latestSpawnTimeMilliseconds - System.currentTimeMillis()).getMinutes();
 						}
 					}

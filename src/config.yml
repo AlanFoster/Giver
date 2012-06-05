@@ -1,40 +1,52 @@
 # Freely modify this file to change what the user can modify
 # The key is the command which will cause that entityType to fire, ie "/giver cat"
 # EntityName rules are ::
-# 	MaterialType [Link : http://jd.bukkit.org/doxygen/d9/db0/Material_8java_source.html]
-# OR
-#	EntityType [Link : http://jd.bukkit.org/doxygen/d6/d7b/EntityType_8java_source.html]
+# 	MaterialType [Link : http://jd.bukkit.org/doxygen/d9/db0/Material_8java_source.html] OR EntityType [Link : http://jd.bukkit.org/doxygen/d6/d7b/EntityType_8java_source.html]
 
-ignoreSpawnLimitsIfAdmin: false
-
+ignoreSpawnLimitsIfAdmin: false 
 spawnableTypes:
   cat:
     minecraftName: Ozelot
-    spawnLimitPerHour: 4
+    spawnLimits:
+      normal: 4
+      super: 10
   wolf:
     minecraftName: Wolf
-    spawnLimitPerHour: 4
+    spawnLimits:
+      normal: 4
+      super: 10
   golem:
     minecraftName: VillagerGolem
-    spawnLimitPerHour: 4
+    spawnLimits:
+      normal: 4
+      super: 10
   cart:
     minecraftName: Minecart
-    spawnLimitPerHour: 2
+    spawnLimits:
+      normal: 2
+      super: 4
   villager:
     minecraftName: Villager
-    spawnLimitPerHour: 4
+    spawnLimits:
+      normal: 4
+      super: 10
   pig:
     minecraftName: Pig
-    spawnLimitPerHour: 4
+    spawnLimits:
+      normal: 4
+      super: 10
   sheep:
     minecraftName: Sheep
-    spawnLimitPerHour: 4
+    spawnLimits:
+      normal: 4
+      super: 10
   cow:
     minecraftName: Cow
-    spawnLimitPerHour: 4
+    spawnLimits:
+      normal: 4
+      super: 10
   chicken:
     minecraftName: Chicken
-    spawnLimitPerHour: 4
-  sand:
-    minecraftName: Sand
-    spawnLimitPerHour: 5
+    spawnLimits:
+      normal: 4
+      super: 10

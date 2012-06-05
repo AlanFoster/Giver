@@ -1,4 +1,4 @@
-package me.alanfoster.commands;
+package me.alanfoster.minecraft.commands;
 
 import org.bukkit.entity.Player;
 
