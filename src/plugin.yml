@@ -4,12 +4,7 @@ author: Alan Foster
 website: https://github.com/AlanFoster/Giver
 
 main: me.alanfoster.giver.Giver
-
-commands:
-  giver:
-    usage: /giver <entityName> - Type "/giver help" for further details
-    description: Creates an item for you
-       
+   
 permissions:
   giver.normal:
     description: Normal user operations
@@ -17,3 +12,5 @@ permissions:
   giver.super:
     description: Super user operations!
     default: false
+    
+# Commands defined in config.yml

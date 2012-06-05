@@ -1,7 +1,6 @@
 package me.alanfoster.giver.commonCommands;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,10 +22,7 @@ import me.alanfoster.utils.Helpers;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class SpawnCommand extends CommandListener {
 	/**
@@ -146,7 +142,7 @@ public class SpawnCommand extends CommandListener {
 
 	@Override
 	public String getUsage() {
-		return "Usage: /" + GiverConfig.name + " <" + getValidTypesHelpString() + ">";
+		return "Usage: /" + GiverConfig.getListenCommand() + " <" + getValidTypesHelpString() + ">";
 	}
 	
 	private String getValidTypesHelpString(){

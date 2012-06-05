@@ -3,7 +3,10 @@
 # EntityName rules are ::
 # 	MaterialType [Link : http://jd.bukkit.org/doxygen/d9/db0/Material_8java_source.html] OR EntityType [Link : http://jd.bukkit.org/doxygen/d6/d7b/EntityType_8java_source.html]
 
-ignoreSpawnLimitsIfAdmin: false 
+ignoreSpawnLimitsIfAdmin: false
+
+listenCommand: giver
+
 spawnableTypes:
   cat:
     minecraftName: Ozelot

@@ -3,20 +3,13 @@ package me.alanfoster.giver.configs;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.DateFormat.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import javax.xml.crypto.dsig.keyinfo.PGPData;
-
 import me.alanfoster.giver.Permission;
 import me.alanfoster.giver.spawners.Spawner;
-import me.alanfoster.giver.spawners.SpawnerFactory;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -27,7 +20,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SpawnRecords {
 	private static final String saveLocation = "spawnRecords.yml";
 	private static SpawnRecords instance;
-	
 	
 	private FileConfiguration spawnRecords;
 	private File spawnRecordsFile;
@@ -85,16 +77,15 @@ public class SpawnRecords {
 				long previousHourMilliseconds = System.currentTimeMillis() - 3600000;
 				
 				int pastHourSpawnCount = 0;
-				long latestSpawnTimeMilliseconds = 0;
 				
 				Iterator<Long> iterator = previousSpawnTimes.iterator();
 				while(iterator.hasNext()){
-					latestSpawnTimeMilliseconds = iterator.next();
-					if(latestSpawnTimeMilliseconds > previousHourMilliseconds){
+					long previousSpawnTime = iterator.next();
+					if(previousSpawnTime > previousHourMilliseconds){
 						pastHourSpawnCount++;
 							
 						if(pastHourSpawnCount == spawner.getSpawnLimit(playerPermission)){
-							return new Date(latestSpawnTimeMilliseconds - System.currentTimeMillis()).getMinutes();
+							return new Date(previousSpawnTime - System.currentTimeMillis()).getMinutes();
 						}
 					}
 				}

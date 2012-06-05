@@ -12,7 +12,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GiverConfig {
-	public static final String name = "giver";
+	private static String listenCommand;
 	private JavaPlugin plugin;
 	private List<SpawnRequest> cachedSpawnRequests;
 	private boolean ignoreSpawnLimitsIfAdmin;
@@ -24,6 +24,7 @@ public class GiverConfig {
 		
 		refreshSpawnRequests();
 		ignoreSpawnLimitsIfAdmin = config.getBoolean("ignoreSpawnLimitsIfAdmin");
+		listenCommand = config.getString("listenCommand").toLowerCase();
 	}
 	
 	private FileConfiguration getConfig(){
@@ -74,5 +75,9 @@ public class GiverConfig {
 
 	public boolean getIgnoreSpawnLimitsIfAdmin() {
 		return ignoreSpawnLimitsIfAdmin;
+	}
+
+	public static String getListenCommand() {
+		return listenCommand;
 	}
 }
