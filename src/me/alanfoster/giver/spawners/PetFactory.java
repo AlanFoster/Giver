@@ -1,4 +1,6 @@
-package Spawners;
+package me.alanfoster.giver.spawners;
+
+import me.alanfoster.utils.Helpers;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Ageable;
@@ -10,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Tameable;
 import org.bukkit.entity.Wolf;
 
-import Utils.Helpers;
 
 public class PetFactory extends EntityFactory {
 	// This might be stored somewhere already?

@@ -1,4 +1,6 @@
-package main;
+package me.alanfoster.giver;
+
+import me.alanfoster.utils.Helpers;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -10,7 +12,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import Utils.Helpers;
 
 public class CartListener implements Listener {
 	// TODO see if there's already a way to test if it's valid for placing blocks

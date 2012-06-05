@@ -1,4 +1,4 @@
-package Utils;
+package me.alanfoster.utils;
 
 public final class Helpers {
 	// Private constructor so that the class can not be instantiated

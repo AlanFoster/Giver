@@ -1,4 +1,4 @@
-package Spawners;
+package me.alanfoster.giver.spawners;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

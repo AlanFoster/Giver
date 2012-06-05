@@ -1,8 +1,11 @@
-package Commands;
+package me.alanfoster.commands;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import me.alanfoster.commands.giver.commonCommands.SpawnCommand;
+import me.alanfoster.giver.configs.GiverConfig;
+import me.alanfoster.giver.configs.SpawnRecords;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,21 +13,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import configs.SpawnRecords;
-
-
-
-import CommonCommands.HelpMenuCommand;
-import CommonCommands.ReportCommand;
-import CommonCommands.SpawnCommand;
-
 public final class CommandManager implements CommandExecutor {
 	private JavaPlugin plugin;
+	private GiverConfig config;
 	
 	private List<ICommandEventListener> listeners;
 
 	public CommandManager(JavaPlugin plugin) {
 		this.plugin = plugin;
+		
+		config = new GiverConfig(plugin);
 		
 		// TODO Wrong
 		SpawnRecords.setInstance(new SpawnRecords(plugin));
@@ -34,9 +32,7 @@ public final class CommandManager implements CommandExecutor {
 	}
 
 	private void registerCommonListeners() {
-		registerListener(new SpawnCommand(plugin));
-		// registerListener(new ReportCommand());
-		// registerListener(new HelpMenuCommand(listeners));
+		registerListener(new SpawnCommand(config));
 	}
 
 	public boolean registerListener(CommandListener newListener) {
@@ -63,9 +59,6 @@ public final class CommandManager implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command rawCommand, String rawAccesor, String[] rawArgs) {
 		if(sender instanceof Player){
 			Player player = (Player) sender;
-			
-			String actualCommand = rawArgs.length > 0 ? rawArgs[0] : "";
-			String[] args = rawArgs.length > 1 ? Arrays.copyOfRange(rawArgs, 1, rawArgs.length) : new String[0];
 			
 			for(ICommandEventListener commandListener : listeners){				
 				if(commandListener.handlesCommand(rawAccesor)) {

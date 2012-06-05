@@ -1,8 +1,9 @@
-package main;
+package me.alanfoster.giver;
+
+import me.alanfoster.commands.CommandManager;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import Commands.CommandManager;
 
 public class Giver extends JavaPlugin {
 	private CommandManager commandManager;

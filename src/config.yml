@@ -9,32 +9,32 @@ ignoreSpawnLimitsIfAdmin: false
 
 spawnableTypes:
   cat:
-    entityName: Ozelot
+    minecraftName: Ozelot
     spawnLimitPerHour: 4
   wolf:
-    entityName: Wolf
+    minecraftName: Wolf
     spawnLimitPerHour: 4
   golem:
-    entityName: VillagerGolem
+    minecraftName: VillagerGolem
     spawnLimitPerHour: 4
   cart:
-    entityName: Minecart
+    minecraftName: Minecart
     spawnLimitPerHour: 2
   villager:
-    entityName: Villager
+    minecraftName: Villager
     spawnLimitPerHour: 4
   pig:
-    entityName: Pig
+    minecraftName: Pig
     spawnLimitPerHour: 4
   sheep:
-    entityName: Sheep
+    minecraftName: Sheep
     spawnLimitPerHour: 4
   cow:
-    entityName: Cow
+    minecraftName: Cow
     spawnLimitPerHour: 4
   chicken:
-    entityName: Chicken
+    minecraftName: Chicken
     spawnLimitPerHour: 4
   sand:
-    entityName: Sand
+    minecraftName: Sand
     spawnLimitPerHour: 5

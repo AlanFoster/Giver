@@ -1,7 +1,7 @@
 name: Giver 
 version: 1.0
 main: main.Giver
-authors: [foo]
+authors: [Alan Foster]
 
 commands:
     giver:

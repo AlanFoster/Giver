@@ -1,4 +1,4 @@
-package configs;
+package me.alanfoster.giver.configs;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,12 +14,13 @@ import java.util.concurrent.TimeUnit;
 
 import javax.xml.crypto.dsig.keyinfo.PGPData;
 
+import me.alanfoster.giver.spawners.Spawner;
+import me.alanfoster.giver.spawners.SpawnerFactory;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import Spawners.Spawner;
 
 
 public class SpawnRecords {
@@ -119,6 +120,4 @@ public class SpawnRecords {
 			System.out.println("Failed to save spawnRecords for " + player + " for spawner : " + spawner);
 		}
 	}
-	
-
 }
