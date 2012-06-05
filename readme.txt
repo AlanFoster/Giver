@@ -1,0 +1,1 @@
+'Giver' is a Minecraft Bukkit server mod that allows users to create limited quanties of specified items per hour 
