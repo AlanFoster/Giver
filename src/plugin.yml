@@ -1,0 +1,9 @@
+name: Giver 
+version: 1.0
+main: main.Giver
+authors: [foo]
+
+commands:
+    giver:
+        usage: /giver <entityName> - Type "/giver help" for further details
+        description: Creates an item for you

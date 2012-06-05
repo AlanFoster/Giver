@@ -1,0 +1,40 @@
+# Freely modify this file to change what the user can modify
+# The key is the command which will cause that entityType to fire, ie "/giver cat"
+# EntityName rules are ::
+# 	MaterialType [Link : http://jd.bukkit.org/doxygen/d9/db0/Material_8java_source.html]
+# OR
+#	EntityType [Link : http://jd.bukkit.org/doxygen/d6/d7b/EntityType_8java_source.html]
+
+ignoreSpawnLimitsIfAdmin: false
+
+spawnableTypes:
+  cat:
+    entityName: Ozelot
+    spawnLimitPerHour: 4
+  wolf:
+    entityName: Wolf
+    spawnLimitPerHour: 4
+  golem:
+    entityName: VillagerGolem
+    spawnLimitPerHour: 4
+  cart:
+    entityName: Minecart
+    spawnLimitPerHour: 2
+  villager:
+    entityName: Villager
+    spawnLimitPerHour: 4
+  pig:
+    entityName: Pig
+    spawnLimitPerHour: 4
+  sheep:
+    entityName: Sheep
+    spawnLimitPerHour: 4
+  cow:
+    entityName: Cow
+    spawnLimitPerHour: 4
+  chicken:
+    entityName: Chicken
+    spawnLimitPerHour: 4
+  sand:
+    entityName: Sand
+    spawnLimitPerHour: 5
